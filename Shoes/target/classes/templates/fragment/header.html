@@ -1,0 +1,154 @@
+
+<style>/* Kích thước chữ lớn hơn */
+.menu > li > a {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 18px;
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.menu > li > a:hover {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Active */
+.menu > li.active > a {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Click effect */
+.menu > li > a:active {
+    transform: scale(0.95);
+    background-color: rgba(0, 123, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Hiệu ứng bóng đổ khi cuộn */
+.sticky-header {
+    transition: box-shadow 0.3s ease;
+}
+
+.sticky-active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    z-index: 1000;
+}
+
+    @media (max-width: 991.98px) {
+    .header-middle .container,
+    .header-bottom .container {
+        padding: 0 15px;
+    }
+
+    .header-bottom {
+        display: none !important; /* Ẩn menu lớn khi trên mobile */
+    }
+
+    .mobile-menu-toggler {
+        display: inline-block;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .mobile-menu-toggler {
+        display: none;
+    }
+}
+
+
+</style>
+<th:block th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <header class="header">
+        <div class="header-middle">
+            <div class="container">
+                <div class="header-left col-lg-2 w-auto pl-0">
+                    <button class="mobile-menu-toggler text-primary mr-2" type="button">
+                        <i class="icon-menu"></i>
+                    </button>
+                    <!-- Logo chữ -->
+                    <div class="d-flex align-items-center">
+                        <button class="mobile-menu-toggler text-primary mr-2" type="button">
+                            <i class="icon-menu"></i>
+                        </button>
+                        <a href="/" class="logo-text h4 mb-0 text-dark font-weight-bold">
+                            ShopGiay
+                        </a>
+                    </div>
+                </div><!-- End .header-left -->
+
+                <div class="header-right w-lg-max">
+                    <div class="header-icon header-icon header-search header-search-inline header-search-category w-lg-max text-right">
+                        <a href="#" class="search-toggle search-button" role="button"><i class="icon-search-3"></i></a>
+                        <div class="header-search-wrapper">
+                            <input class="form-control search-input"  placeholder="Nhập sản phẩm cần tìm kiếm..." required>
+                            <button class="btn icon-search-3 p-0 search-button" type="submit"></button>
+                        </div><!-- End .header-search-wrapper -->
+                    </div><!-- End .header-search -->
+
+                    <div class="header-contact d-none d-lg-flex pl-4 ml-3 mr-xl-5 pr-4">
+                        <img alt="phone" th:src="@{/shop/images/phone.png}" width="30" height="30" class="pb-1">
+                        <h6>Hotline<a href="tel:#" class="text-dark font1">036 279 9888</a></h6>
+                    </div>
+
+                    <a href="" data-toggle="modal" data-target="#exampleModal" class="header-icon account-setting"><i class="icon-user-2"></i></a>
+
+                </div><!-- End .header-right -->
+            </div><!-- End .container -->
+        </div><!-- End .header-middle -->
+
+        <div class="header-bottom sticky-header d-none d-lg-block">
+            <div class="container">
+                <nav class="main-nav w-100">
+                    <ul class="menu">
+                        <li th:classappend="${#httpServletRequest.requestURI == '/'} ? 'active'">
+                            <a href="/">Trang chủ</a>
+                        </li>
+                        <li class="float-right mr-0" th:classappend="${#httpServletRequest.requestURI == '/lien-he'} ? 'active'">
+                            <a href="/lien-he" class="px-4">Liên hệ</a>
+                        </li>
+                        <li class="float-right" th:classappend="${#httpServletRequest.requestURI == '/doi-hang'} ? 'active'">
+                            <a href="/doi-hang">Chính sách</a>
+                        </li>
+                        <li class="float-right" th:classappend="${#httpServletRequest.requestURI == '/tin-tuc'} ? 'active'">
+                            <a href="/tin-tuc">Tin tức</a>
+                        </li>
+                        <li class="float-right" th:classappend="${#httpServletRequest.requestURI == '/san-pham'} ? 'active'">
+                            <a href="/san-pham">Sản phẩm</a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div><!-- End .container -->
+        </div><!-- End .header-bottom -->
+    </header><!-- End .header -->
+</th:block>
+<script>
+    // Toggle mobile menu
+    document.querySelectorAll('.mobile-menu-toggler').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        });
+    });
+
+    // Bóng đổ khi scroll
+    window.addEventListener('scroll', function () {
+        const headerBottom = document.querySelector('.header-bottom');
+        if (window.scrollY > 50) {
+            headerBottom.classList.add('sticky-active');
+        } else {
+            headerBottom.classList.remove('sticky-active');
+        }
+    });
+</script>
