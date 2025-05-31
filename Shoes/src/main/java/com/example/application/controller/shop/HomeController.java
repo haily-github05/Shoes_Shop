@@ -3,7 +3,6 @@ package com.example.application.controller.shop;
 import com.example.application.entity.*;
 import com.example.application.exception.NotFoundException;
 import com.example.application.service.*;
-import com.example.application.entity.*;
 import com.example.application.exception.BadRequestException;
 import com.example.application.model.dto.CheckPromotion;
 import com.example.application.model.dto.DetailProductInfoDTO;
@@ -12,7 +11,6 @@ import com.example.application.model.dto.ProductInfoDTO;
 import com.example.application.model.request.CreateOrderRequest;
 import com.example.application.model.request.FilterProductRequest;
 import com.example.application.security.CustomUserDetails;
-import com.example.application.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +23,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.application.config.Contant.*;
+import static com.example.application.config.Constant.*;
 
 @Controller
 public class HomeController {

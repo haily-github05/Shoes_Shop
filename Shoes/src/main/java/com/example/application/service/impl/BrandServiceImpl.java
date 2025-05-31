@@ -1,6 +1,6 @@
 package com.example.application.service.impl;
 
-import com.example.application.config.Contant;
+import com.example.application.config.Constant;
 import com.example.application.entity.Brand;
 import com.example.application.exception.BadRequestException;
 import com.example.application.exception.InternalServerException;
@@ -32,7 +32,7 @@ public class BrandServiceImpl implements BrandService {
         if (page < 0) {
             page = 0;
         }
-        Pageable pageable = PageRequest.of(page, Contant.LIMIT_BRAND, Sort.by("created_at").descending());
+        Pageable pageable = PageRequest.of(page, Constant.LIMIT_BRAND, Sort.by("created_at").descending());
         return brandRepository.adminGetListBrands(id, name, status, pageable);
 
     }

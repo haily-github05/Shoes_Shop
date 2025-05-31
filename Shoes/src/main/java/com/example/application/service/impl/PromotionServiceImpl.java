@@ -1,6 +1,6 @@
 package com.example.application.service.impl;
 
-import com.example.application.config.Contant;
+import com.example.application.config.Constant;
 import com.example.application.entity.Promotion;
 import com.example.application.exception.InternalServerException;
 import com.example.application.exception.NotFoundException;
@@ -49,7 +49,7 @@ public class PromotionServiceImpl implements PromotionService {
         if (createPromotionRequest.getExpiredDate().before(now)) {
             throw new BadRequestException("Hạn khuyến mại không hợp lệ");
         }
-        if (createPromotionRequest.getDiscountType() == Contant.DISCOUNT_PERCENT) {
+        if (createPromotionRequest.getDiscountType() == Constant.DISCOUNT_PERCENT) {
             if (createPromotionRequest.getDiscountValue() < 1 || createPromotionRequest.getDiscountValue() > 100) {
                 throw new BadRequestException("Mức giảm giá từ 1% - 100%");
             }
@@ -79,7 +79,7 @@ public class PromotionServiceImpl implements PromotionService {
         promotion.setExpiredAt(createPromotionRequest.getExpiredDate());
         promotion.setDiscountType(createPromotionRequest.getDiscountType());
         promotion.setDiscountValue(createPromotionRequest.getDiscountValue());
-        if (createPromotionRequest.getDiscountType() == Contant.DISCOUNT_PERCENT) {
+        if (createPromotionRequest.getDiscountType() == Constant.DISCOUNT_PERCENT) {
             promotion.setMaximumDiscountValue(createPromotionRequest.getMaxValue());
         } else {
             promotion.setMaximumDiscountValue(createPromotionRequest.getDiscountValue());
@@ -97,7 +97,7 @@ public class PromotionServiceImpl implements PromotionService {
         }
 
         //check validate
-        if (createPromotionRequest.getDiscountType() == Contant.DISCOUNT_PERCENT) {
+        if (createPromotionRequest.getDiscountType() == Constant.DISCOUNT_PERCENT) {
             if (createPromotionRequest.getDiscountValue() < 1 || createPromotionRequest.getDiscountValue() > 100) {
                 throw new BadRequestException("Mức giảm giá từ 1 - 100%");
             }
@@ -130,7 +130,7 @@ public class PromotionServiceImpl implements PromotionService {
         promotion.setExpiredAt(createPromotionRequest.getExpiredDate());
         promotion.setDiscountType(createPromotionRequest.getDiscountType());
         promotion.setDiscountValue(createPromotionRequest.getDiscountValue());
-        if (createPromotionRequest.getDiscountType() == Contant.DISCOUNT_PERCENT) {
+        if (createPromotionRequest.getDiscountType() == Constant.DISCOUNT_PERCENT) {
             promotion.setMaximumDiscountValue(createPromotionRequest.getMaxValue());
         } else {
             promotion.setDiscountValue(createPromotionRequest.getDiscountValue());
@@ -185,7 +185,7 @@ public class PromotionServiceImpl implements PromotionService {
     public long calculatePromotionPrice(long price, Promotion promotion) {
         long discountValue = promotion.getMaximumDiscountValue();
         long tmp = promotion.getDiscountValue();
-        if (promotion.getDiscountType() == Contant.DISCOUNT_PERCENT) {
+        if (promotion.getDiscountType() == Constant.DISCOUNT_PERCENT) {
             tmp = price * promotion.getDiscountValue() / 100;
         }
         if (tmp < discountValue) {

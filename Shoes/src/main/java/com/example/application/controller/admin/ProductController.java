@@ -1,6 +1,6 @@
 package com.example.application.controller.admin;
 
-import com.example.application.config.Contant;
+import com.example.application.config.Constant;
 import com.example.application.entity.*;
 import com.example.application.model.request.CreateProductRequest;
 import com.example.application.model.request.CreateSizeCountRequest;
@@ -8,7 +8,6 @@ import com.example.application.security.CustomUserDetails;
 import com.example.application.service.BrandService;
 import com.example.application.service.CategoryService;
 import com.example.application.service.ProductService;
-import com.example.application.entity.*;
 import com.example.application.model.request.UpdateFeedBackRequest;
 import com.example.application.service.ImageService;
 import lombok.extern.slf4j.Slf4j;
@@ -116,7 +115,7 @@ public class ProductController {
         model.addAttribute("brands", brands);
 
         //Lấy danh sách size
-        model.addAttribute("sizeVN", Contant.SIZE_VN);
+        model.addAttribute("sizeVN", Constant.SIZE_VN);
 
         //Lấy size của sản phẩm
         List<ProductSize> productSizes = productService.getListSizeOfProduct(id);

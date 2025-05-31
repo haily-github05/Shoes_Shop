@@ -9,7 +9,6 @@ import com.example.application.repository.ProductRepository;
 import com.example.application.repository.ProductSizeRepository;
 import com.example.application.service.OrderService;
 import com.example.application.service.PromotionService;
-import com.example.application.entity.*;
 import com.example.application.exception.BadRequestException;
 import com.example.application.model.dto.OrderDetailDTO;
 import com.example.application.model.request.CreateOrderRequest;
@@ -27,7 +26,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.application.config.Contant.*;
+import static com.example.application.config.Constant.*;
 
 @Controller
 public class OrderServiceImpl implements OrderService {

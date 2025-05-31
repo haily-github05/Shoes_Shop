@@ -1,6 +1,6 @@
 package com.example.application.service.impl;
 
-import com.example.application.config.Contant;
+import com.example.application.config.Constant;
 import com.example.application.entity.Category;
 import com.example.application.exception.BadRequestException;
 import com.example.application.exception.InternalServerException;
@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (page <= 0) {
             page = 0;
         }
-        Pageable pageable = PageRequest.of(page, Contant.LIMIT_CATEGORY, Sort.by("created_at").descending());
+        Pageable pageable = PageRequest.of(page, Constant.LIMIT_CATEGORY, Sort.by("created_at").descending());
         return categoryRepository.adminGetListCategory(id, name, status, pageable);
     }
 

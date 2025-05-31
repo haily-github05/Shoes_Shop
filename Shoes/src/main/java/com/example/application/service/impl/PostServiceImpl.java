@@ -23,7 +23,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.application.config.Contant.*;
+import static com.example.application.config.Constant.*;
 
 @Component
 public class PostServiceImpl implements PostService {
